@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PokeMon
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+                var pokePower = long.Parse(Console.ReadLine());
+                var distance = long.Parse(Console.ReadLine());
+                var exhaustionFactor = long.Parse(Console.ReadLine());
+                var count = 0;
+                var pokepowerLeft = pokePower;
+
+                while (pokepowerLeft >= distance)
+                {
+                pokepowerLeft -= distance;
+                count++;
+                if (pokePower % 2 == 0 && pokePower / 2 == pokepowerLeft)
+                    {
+                        if (!(exhaustionFactor == 0))
+                        {
+                            pokepowerLeft /= exhaustionFactor;
+                            continue;
+                        }
+                    }
+                }
+                Console.WriteLine(pokepowerLeft);
+                Console.WriteLine(count);
+        }
+    }
+}

@@ -1,0 +1,73 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace PokemonDontGo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            var integers = Console.ReadLine().Split().Select(a => a.Trim()).Select(a => int.Parse(a)).ToList();
+            var removed = 0;
+            var holder = 0;
+            while (integers.Count > 0)
+            {
+                var index = int.Parse(Console.ReadLine());
+                if (index < 0)
+                {
+                    removed += integers[0];
+                    holder = integers[0];
+                    integers[0] = integers[integers.Count - 1];
+                    for (int i = 0; i < integers.Count; i++)
+                    {
+                        if (integers[i] <= holder)
+                        {
+                            integers[i] += holder;
+                        } else
+                        {
+                            integers[i] -= holder;
+                        }
+                    }
+                    continue;
+                }
+                if (index > integers.Count - 1)
+                {
+                    removed += integers[integers.Count - 1];
+                    holder = integers[integers.Count - 1];
+                    integers[integers.Count - 1] = integers[0];
+                    for (int i = 0; i < integers.Count; i++)
+                    {
+                        if (integers[i] <= holder)
+                        {
+                            integers[i] += holder;
+                        }
+                        else
+                        {
+                            integers[i] -= holder;
+                        }
+                    }
+                    continue;
+                }
+                removed += integers[index];
+                holder = integers[index];
+                integers.RemoveAt(index);
+                
+                for (int i = 0; i < integers.Count; i++)
+                {
+                    if (integers[i] <= holder)
+                    {
+                        integers[i] += holder;
+                    }
+                    else
+                    {
+                        integers[i] -= holder;
+                    }
+                }
+            }
+            Console.WriteLine(removed);
+        }
+    }
+}
